@@ -8,7 +8,7 @@ export default class Messages extends Component {
 		this.state = {
 			isLoggedIn: false,
 			newMessage: {
-				user: '',
+				user: this.props.user.displayName,
 				text: ''
 			},
 			messages: [
@@ -27,7 +27,8 @@ export default class Messages extends Component {
 			querySnapshot.forEach((doc) => {
 					dbMessages.push(doc.data());
 			})
-			console.log("messages", dbMessages)
+
+			dbMessages.sort((a,b) => a.id - b.id)
 			
 			this.setState({
 				messages: dbMessages
@@ -37,9 +38,9 @@ export default class Messages extends Component {
 
 
 	updateInputValue = (e) => {
-		// console.log(e.timestamp)
+		console.log(e.timestamp)
 		const updatedMsg = {
-			user: 'tam',
+			user: this.state.newMessage.user,
 			text: e.target.value,
 			id: this.state.messages.length
 		}
@@ -47,7 +48,8 @@ export default class Messages extends Component {
 			newMessage: updatedMsg
 		})
 	}
-	sendMessage = () => {
+	sendMessage = (e) => {
+		console.log(e.timestamp)
 		const docId = this.state.newMessage.id.toString()
 
 		this.db.collection('messages').doc(docId).set({
