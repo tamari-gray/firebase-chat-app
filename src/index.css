@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.messages-box {
+  height: 60vh;
+  width: 60vw;
+  border: thin solid gray;
+  margin-top: 10vh;
+  overflow-y: auto;
+}
+
+li {
+  list-style-type: none
+}
