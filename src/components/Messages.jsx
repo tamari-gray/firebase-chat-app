@@ -38,7 +38,6 @@ export default class Messages extends Component {
 
 
 	updateInputValue = (e) => {
-		console.log(e.timestamp)
 		const updatedMsg = {
 			user: this.state.newMessage.user,
 			text: e.target.value,
@@ -49,7 +48,6 @@ export default class Messages extends Component {
 		})
 	}
 	sendMessage = (e) => {
-		console.log(e.timestamp)
 		const docId = this.state.newMessage.id.toString()
 
 		this.db.collection('messages').doc(docId).set({
